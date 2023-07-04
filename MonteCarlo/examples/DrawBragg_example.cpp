@@ -65,33 +65,34 @@ int main(int argc, char** argv)
             double e=track.GetPrimaryParticle().GetKineticEnergy();
             //double range=track.GetLength();
             //TH1D* h=new TH1D("h",Form("E=%.2fMeV A=%d Z=%d event=%d",e,a,z,i),100,0,1.2*range);
-            if(i<nEventsToDraw);
-                TH1D* h=new TH1D("h",Form("E=%.2fMeV A=%d Z=%d event=%d",e,a,z,i),100,0,braggUpperRange);
-            auto start=track.GetStart();
-            hRange->Fill(track.GetRange());
-            for(const auto& hit : track.GetHits())
-            {
-                auto pos=hit.GetPosition();
-                auto d=pos-start;
-                auto eDep=hit.GetEnergy();
-                hXZ->Fill(pos.X(),pos.Z(),eDep);
-                hYZ->Fill(pos.Y(),pos.Z(),eDep);
-                hXY->Fill(pos.X(),pos.Y(),eDep);
-                if(i<nEventsToDraw) {
-                    h->Fill(d.Mag(),  eDep);
+            if (i < nEventsToDraw) {
+                TH1D* h = new TH1D("h", Form("E=%.2fMeV A=%d Z=%d event=%d", e, a, z, i), 100, 0, braggUpperRange);
+                auto start = track.GetStart();
+                hRange->Fill(track.GetRange());
+                for (const auto& hit : track.GetHits())
+                {
+                    auto pos = hit.GetPosition();
+                    auto d = pos - start;
+                    auto eDep = hit.GetEnergy();
+                    hXZ->Fill(pos.X(), pos.Z(), eDep);
+                    hYZ->Fill(pos.Y(), pos.Z(), eDep);
+                    hXY->Fill(pos.X(), pos.Y(), eDep);
+                    if (i < nEventsToDraw) {
+                        h->Fill(d.Mag(), eDep);
+                    }
+                    hall->Fill(d.Mag(), eDep);
                 }
-                hall->Fill(d.Mag(),  eDep);
+                auto cos = (track.GetStop() - track.GetStart()).Dot(track.GetPrimaryParticle().GetMomentum().Unit()) / (track.GetRange());
+                hScatDev->Fill(TMath::ACos(cos) * 180 / TMath::Pi());
+                if (i < nEventsToDraw) {
+                    h->Scale(1 / h->GetBinWidth(1));
+                    h->GetXaxis()->SetTitle("Distance [mm]");
+                    h->GetYaxis()->SetTitle("Energy deposit [MeV/mm]");
+                    h->Draw("hist");
+                    c->Print("bragg.pdf");
+                }
+                delete h;
             }
-            auto cos = (track.GetStop()-track.GetStart()).Dot(track.GetPrimaryParticle().GetMomentum().Unit())/(track.GetRange());
-            hScatDev->Fill(TMath::ACos(cos)*180/TMath::Pi());
-            if(i<nEventsToDraw) {
-                h->Scale(1 / h->GetBinWidth(1));
-                h->GetXaxis()->SetTitle("Distance [mm]");
-                h->GetYaxis()->SetTitle("Energy deposit [MeV/mm]");
-                h->Draw("hist");
-                c->Print("bragg.pdf");
-            }
-            delete h;
         }
 
         /*

@@ -50,8 +50,8 @@ add_subdirectory(DataFormats)
 add_subdirectory(GrawToROOT)
 add_subdirectory(Reconstruction)
 add_subdirectory(Analysis)
-add_subdirectory(GUI)
 add_subdirectory(Simulation)
+add_subdirectory(GUI)
 add_subdirectory(MonteCarlo)
 
 if(NOT IS_DIRECTORY ${CMAKE_INSTALL_PREFIX}/resources)
@@ -75,7 +75,7 @@ write_basic_package_version_file(
   COMPATIBILITY AnyNewerVersion)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/TPCRecoConfig.cmake
-              ${CMAKE_CURRENT_BINARY_DIR}/TPCRecoConfigVersion.cmake
+               ${CMAKE_CURRENT_BINARY_DIR}/TPCRecoConfigVersion.cmake
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/TPCReco)
 
 add_subdirectory(package)

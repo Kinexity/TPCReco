@@ -104,6 +104,7 @@ namespace enumDict {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+std::string filename_string(std::string path_str);
 
 #define _endl_ " (" << filename_string(__FILE__) << "; " << __LINE__ << ")\n"
 #define checkpoint std::cout << "checkpoint" << _endl_

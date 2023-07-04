@@ -12,9 +12,9 @@
 //
 //**********************************************************************************************************
 
-#include "EventSourceBase.h"
+#include "TPCReco/EventSourceBase.h"
 #include <boost/property_tree/json_parser.hpp>
-#include "GUI_commons.h"
+#include "TPCReco/GUI_commons.h"
 
 #include <cstdlib>
 #include <iostream>
@@ -22,17 +22,17 @@
 #include <iomanip>
 #include <vector>
 
-#include "colorText.h"
+#include "TPCReco/colorText.h"
 
 #include <boost/filesystem.hpp>
 
 //#define WITH_GET 1
 #ifdef WITH_GET
-#include "EventSourceGRAW.h"
-#include "EventSourceMultiGRAW.h"
+#include "TPCReco/EventSourceGRAW.h"
+#include "TPCReco/EventSourceMultiGRAW.h"
 #endif
-#include "EventSourceROOT.h"
-#include "EventSourceMC.h"
+#include "TPCReco/EventSourceROOT.h"
+#include "TPCReco/EventSourceMC.h"
 
 namespace EventSourceFactory {
 	inline std::shared_ptr<EventSourceBase> makeEventSourceObject(boost::property_tree::ptree& myConfig) {

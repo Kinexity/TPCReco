@@ -4,6 +4,7 @@ message(STATUS "Adding CMake fragment for module:\t${MODULE_NAME}")
 # ROOT 6.08 dictionary MODULE workaround
 include_directories(${PROJECT_SOURCE_DIR}/DataFormats/include/)
 include_directories(${PROJECT_SOURCE_DIR}/Utilities/include/)
+include_directories(${PROJECT_SOURCE_DIR}/Simulation/include/)
 root_generate_dictionary(
   G__${TPCRECO_PREFIX}${MODULE_NAME}
   ${CMAKE_CURRENT_SOURCE_DIR}/include/TPCReco/EventTPC.h

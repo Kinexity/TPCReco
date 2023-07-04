@@ -36,7 +36,6 @@
 #include "TPCReco/EventSourceBase.h"
 #include "TPCReco/HistoManager.h"
 #include "TPCReco/DirectoryWatch.h"
-#include "TPCReco/EventSourceFactory.h"
 
 #include <boost/property_tree/json_parser.hpp>
 

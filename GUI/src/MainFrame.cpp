@@ -31,6 +31,8 @@
 #include "TPCReco/EventSourceROOT.h"
 #include "TPCReco/EventSourceMC.h"
 
+#include "TPCReco/EventSourceFactory.h"
+
 #include <TGButtonGroup.h>
 #include <TGButton.h>
 /////////////////////////////////////////////////////////
